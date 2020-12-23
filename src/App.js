@@ -2,13 +2,12 @@
 
 
 import './App.css';
-
+import { v4 as uuidv4 } from 'uuid';
 
 import React, { useRef, useState, useEffect } from 'react'
+import Header from './Header';
 
 function App() {
-
-
 
   useEffect(
     () => {
@@ -17,7 +16,11 @@ function App() {
 
   const inputNameRef = useRef()
 
-  const dataResturnFromServer = [{ id: 1, item: "first todo" }, { id: 1, item: "second todo" }]
+  const dataResturnFromServer = [
+    { id: uuidv4(), item: "first todo" }, 
+    { id: uuidv4(), item: "second todo" }]
+
+
   const [todos, setTodos] = useState(dataResturnFromServer)
 
   const namesFromServer = ["avi"]
@@ -41,13 +44,12 @@ function App() {
     //   })
 
   function add() {
-    namesFromServer.push("avi 2")
 
 
     const userValue = inputNameRef.current.value
     setTodos(
       prev => {
-        return [...prev, { item: userValue }]
+        return [...prev, { item: userValue, id: uuidv4() }]
       }
     )
 
@@ -74,13 +76,11 @@ function App() {
     <div className="App">
       <header className="App-header">
 
-
+      <Header todos={todos}/>
         <input ref={inputNameRef} id="name" type="text" />
         <button onClick={remove}>remove</button>
         <button onClick={add}>add</button>
-        <div>
-          {todos.map(todo => <p>{todo.item}</p>)}
-        </div>
+
 
       </header>
 
