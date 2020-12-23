@@ -8,29 +8,30 @@ import React, { useRef, useState } from 'react'
 
 function App() {
 
-  const dataResturnFromServer = [{ id: 1, item: "first todo" }, { id: 1, item: "second todo" }]
-  const [todos, setTodos] = useState(dataResturnFromServer)
+
 
 
 
   const inputNameRef = useRef()
 
+  const dataResturnFromServer = [{ id: 1, item: "first todo" }, { id: 1, item: "second todo" }]
+  const [todos, setTodos] = useState(dataResturnFromServer)
+
 
   function catchInput() {
     const userValue = inputNameRef.current.value
 
-
-    // setTodos(function(oldTodo) {
-    //   return []
-    // })
-
-
     setTodos(
-      prev => {
-        return [...prev, { name :"avi"}]
-      }
-    )
+      // prev => {
+      //   return [...prev, { item: userValue }]
+      // }
 
+
+      todos.filter(todo => todo.item != userValue)
+
+      
+      
+    )
 
 
 
