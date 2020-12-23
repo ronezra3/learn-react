@@ -4,13 +4,17 @@
 import './App.css';
 
 
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 
 function App() {
 
 
 
-
+  useEffect(
+    ()=> {
+    console.log("new event")
+  }
+  )
 
   const inputNameRef = useRef()
 
