@@ -8,7 +8,7 @@ export default function Item({ names, name2 }) {
 
     return (
         <div>
-            
+            <HelloWorld />
             {names.map(name => <p>{name}</p>)}
 
             <h1>Hello {name2} !</h1>
