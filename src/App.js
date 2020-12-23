@@ -18,19 +18,13 @@ function App() {
   const [todos, setTodos] = useState(dataResturnFromServer)
 
 
-  function catchInput() {
+  function add() {
+
     const userValue = inputNameRef.current.value
-
     setTodos(
-      // prev => {
-      //   return [...prev, { item: userValue }]
-      // }
-
-
-      todos.filter(todo => todo.item != userValue)
-
-      
-      
+      prev => {
+        return [...prev, { item: userValue }]
+      }
     )
 
 
@@ -38,16 +32,31 @@ function App() {
     inputNameRef.current.value = null
   }
 
+
+
+  function remove() {
+    const userValue = inputNameRef.current.value
+
+    setTodos(
+      todos.filter(todo => todo.item != userValue)
+    )
+
+    inputNameRef.current.value = null
+
+  }
+
+
   return (
     <div className="App">
       <header className="App-header">
 
         <input ref={inputNameRef} id="name" type="text" />
-
-        <button onClick={catchInput}>click</button>
+        <button onClick={remove}>remove</button>
+        <button onClick={add}>add</button>
         <div>
           {todos.map(todo => <p>{todo.item}</p>)}
         </div>
+
       </header>
 
 
