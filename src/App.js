@@ -5,9 +5,19 @@ import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 
 import React, { useRef, useState, useEffect } from 'react'
+import { Route, Switch } from 'react-router-dom';
+
+
+
 import Header from './Header';
+import Footer from './Footer';
+import Home from './Home';
+import About from './About';
+import Contact from './Contact';
+import Nav from './Nav';
 
 function App() {
+
 
   useEffect(
     () => {
@@ -16,9 +26,7 @@ function App() {
 
   const inputNameRef = useRef()
 
-  const dataResturnFromServer = [
-    { id: uuidv4(), item: "first todo" }, 
-    { id: uuidv4(), item: "second todo" }]
+  const dataResturnFromServer = [{ id: uuidv4(), item: "first todo" }, { id: uuidv4(), item: "second todo" }]
 
 
   const [todos, setTodos] = useState(dataResturnFromServer)
@@ -33,15 +41,15 @@ function App() {
     }, [todos])
 
 
-    useEffect(
-      () => {
-        console.log("names changed")
-      }, [namesFromServer])
+  useEffect(
+    () => {
+      console.log("names changed")
+    }, [namesFromServer])
 
-    // useEffect(
-    //   () => {
-    //     console.log("something changed")
-    //   })
+  // useEffect(
+  //   () => {
+  //     console.log("something changed")
+  //   })
 
   function add() {
 
@@ -73,18 +81,19 @@ function App() {
 
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+    <Header />
+    <Nav />
 
-      <Header todos={todos}/>
-        <input ref={inputNameRef} id="name" type="text" />
-        <button onClick={remove}>remove</button>
-        <button onClick={add}>add</button>
+    <Switch>
 
+      <Route path="/home" component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/contact" component={Contact} />
 
-      </header>
-
-
+    </Switch>
+    
+    <Footer />
     </div>
   );
 }
